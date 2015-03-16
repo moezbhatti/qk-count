@@ -9,6 +9,8 @@ import android.view.MenuItem;
 
 public class MainActivity extends ActionBarActivity {
 
+    private CounterFragment mCounterFragment;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -17,7 +19,12 @@ public class MainActivity extends ActionBarActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        getFragmentManager().beginTransaction().replace(R.id.fragment_frame, new CounterFragment()).commit();
+        mCounterFragment = new CounterFragment();
+
+        getFragmentManager().beginTransaction()
+                .replace(R.id.fragment_frame, mCounterFragment)
+                .addToBackStack("counter")
+                .commit();
     }
 
 
@@ -32,6 +39,10 @@ public class MainActivity extends ActionBarActivity {
         int id = item.getItemId();
 
         if (id == R.id.action_settings) {
+            getFragmentManager().beginTransaction()
+                    .replace(R.id.fragment_frame, new PreferenceFragment())
+                    .addToBackStack("settings")
+                    .commit();
             return true;
         }
 

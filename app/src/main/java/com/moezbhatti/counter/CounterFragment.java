@@ -5,9 +5,7 @@ import android.app.Fragment;
 import android.content.Context;
 import android.os.Bundle;
 import android.os.Vibrator;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
+import android.view.*;
 import android.widget.TextView;
 
 public class CounterFragment extends Fragment implements View.OnClickListener {
@@ -22,6 +20,7 @@ public class CounterFragment extends Fragment implements View.OnClickListener {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        setHasOptionsMenu(true);
         mActivity = getActivity();
     }
 
@@ -38,6 +37,11 @@ public class CounterFragment extends Fragment implements View.OnClickListener {
         mVibrator = (Vibrator) mActivity.getSystemService(Context.VIBRATOR_SERVICE);
 
         return view;
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        menu.findItem(R.id.action_settings).setVisible(true);
     }
 
     @Override

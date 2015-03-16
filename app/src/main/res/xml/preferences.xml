@@ -2,13 +2,13 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
     <PreferenceCategory
         android:layout="@layout/preference_category"
-        android:title="Haptic feedback">
+        android:title="@string/pref_category_vibration">
 
         <CheckBoxPreference
             android:key="vibration"
             android:layout="@layout/preference"
-            android:summary="Vibrate the screen when you touch it"
-            android:title="Haptic feedback"
+            android:summary="@string/pref_summary_vibration"
+            android:title="@string/pref_title_vibration"
             android:widgetLayout="@layout/preference_widget_checkbox" />
 
     </PreferenceCategory>

@@ -2,4 +2,8 @@
     <string name="app_name">Counter</string>
 
     <string name="action_settings">Settings</string>
+
+    <string name="pref_category_vibration">Haptic feedback</string>
+    <string name="pref_title_vibration">Haptic feedback</string>
+    <string name="pref_summary_vibration">Vibrate the screen when you touch it</string>
 </resources>

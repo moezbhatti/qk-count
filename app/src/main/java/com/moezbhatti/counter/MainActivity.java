@@ -3,11 +3,13 @@ package com.moezbhatti.counter;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
 
 public class MainActivity extends ActionBarActivity {
+    private final String TAG = "MainActivity";
 
     private CounterFragment mCounterFragment;
 
@@ -47,5 +49,14 @@ public class MainActivity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (getFragmentManager().getBackStackEntryCount() == 1) {
+            finish();
+        } else {
+            getFragmentManager().popBackStack();
+        }
     }
 }

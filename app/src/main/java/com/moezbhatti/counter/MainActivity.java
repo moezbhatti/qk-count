@@ -3,7 +3,6 @@ package com.moezbhatti.counter;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -25,6 +24,9 @@ public class MainActivity extends ActionBarActivity {
 
         getFragmentManager().beginTransaction()
                 .replace(R.id.fragment_frame, mCounterFragment)
+                .setCustomAnimations(R.animator.slide_in_left, R.animator.slide_out_left,
+                        R.animator.slide_in_right, R.animator.slide_out_left)
+                .show(mCounterFragment)
                 .addToBackStack("counter")
                 .commit();
     }
@@ -41,8 +43,12 @@ public class MainActivity extends ActionBarActivity {
         int id = item.getItemId();
 
         if (id == R.id.action_settings) {
+            PreferenceFragment preferenceFragment = new PreferenceFragment();
             getFragmentManager().beginTransaction()
-                    .replace(R.id.fragment_frame, new PreferenceFragment())
+                    .replace(R.id.fragment_frame, preferenceFragment)
+                    .setCustomAnimations(R.animator.slide_in_left, R.animator.slide_out_left,
+                            R.animator.slide_in_left, R.animator.slide_out_left)
+                    .show(preferenceFragment)
                     .addToBackStack("settings")
                     .commit();
             return true;

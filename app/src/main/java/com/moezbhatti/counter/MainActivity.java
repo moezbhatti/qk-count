@@ -24,9 +24,9 @@ public class MainActivity extends ActionBarActivity {
 
         getFragmentManager().beginTransaction()
                 .replace(R.id.fragment_frame, mCounterFragment)
-                .setCustomAnimations(R.animator.slide_in_left, R.animator.slide_out_left,
+                /*.setCustomAnimations(R.animator.slide_in_left, R.animator.slide_out_left,
                         R.animator.slide_in_right, R.animator.slide_out_left)
-                .show(mCounterFragment)
+                .show(mCounterFragment)*/
                 .addToBackStack("counter")
                 .commit();
     }
@@ -46,9 +46,9 @@ public class MainActivity extends ActionBarActivity {
             PreferenceFragment preferenceFragment = new PreferenceFragment();
             getFragmentManager().beginTransaction()
                     .replace(R.id.fragment_frame, preferenceFragment)
-                    .setCustomAnimations(R.animator.slide_in_left, R.animator.slide_out_left,
+                    /*.setCustomAnimations(R.animator.slide_in_left, R.animator.slide_out_left,
                             R.animator.slide_in_left, R.animator.slide_out_left)
-                    .show(preferenceFragment)
+                    .show(preferenceFragment)*/
                     .addToBackStack("settings")
                     .commit();
             return true;

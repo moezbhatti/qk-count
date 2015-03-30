@@ -3,6 +3,7 @@ package com.moezbhatti.counter.view;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.Gravity;
+import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import com.github.adnansm.timelytextview.TimelyView;
 import com.moezbhatti.counter.R;
@@ -12,8 +13,6 @@ import com.moezbhatti.counter.R;
  */
 public class CounterView extends LinearLayout {
     private final String TAG = "CounterView";
-
-    private TimelyView mTimelyView;
 
     private int mCount = 0;
 
@@ -40,20 +39,54 @@ public class CounterView extends LinearLayout {
     }
 
     public void increment() {
-        int start = mCount;
+        int[] digitsStart = getDigitsFromNumber(mCount);
         mCount++;
-        if (mCount > 9) {
-            mCount = 0;
+        int[] digits = getDigitsFromNumber(mCount);
+
+        if (digits.length > digitsStart.length) {
+            addDigit();
         }
 
-        mTimelyView.animate(start, mCount).start();
+        for (int i = 0; i < digits.length; i++) {
+            int from;
+            int to;
+
+            if (digits.length > digitsStart.length) {
+                if (i == 0) {
+                    from = 0;
+                    to = digits[i];
+                } else {
+                    from = digitsStart[i - 1];
+                    to = digits[i];
+                }
+            } else {
+                from = digitsStart[i];
+                to = digits[i];
+            }
+
+            ((TimelyView) getChildAt(i)).animate(from, to).start();
+        }
+    }
+
+    private int[] getDigitsFromNumber(int count) {
+        String s = Integer.toString(count);
+
+        int[] digits = new int[s.length()];
+        for (int i = 0; i < digits.length; i++) {
+            digits[i] = Integer.parseInt(Character.toString(s.charAt(i)));
+        }
+
+        return digits;
     }
 
     private void addDigit() {
-        mTimelyView = (TimelyView) inflate(getContext(), R.layout.digit, null);
-        mTimelyView.animate(0).setDuration(0).start();
+        LayoutParams lp = new LayoutParams(192, ViewGroup.LayoutParams.WRAP_CONTENT, 1f);
 
-        addView(mTimelyView);
+        TimelyView timelyView = (TimelyView) inflate(getContext(), R.layout.digit, null);
+        timelyView.animate(0).setDuration(0).start();
+        timelyView.setLayoutParams(lp);
+
+        addView(timelyView);
     }
 
     public int getCount() {

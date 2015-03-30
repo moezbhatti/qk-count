@@ -9,8 +9,6 @@ import android.os.Vibrator;
 import android.preference.PreferenceManager;
 import android.view.*;
 import android.widget.ImageButton;
-import android.widget.TextView;
-import android.widget.Toast;
 import com.moezbhatti.counter.R;
 import com.moezbhatti.counter.view.CounterView;
 
@@ -27,8 +25,7 @@ public class CounterFragment extends Fragment implements View.OnClickListener {
     private int mIncrement = 1;
 
     private View mRootView;
-    private TextView mCounter;
-    private CounterView mCounterTest;
+    private CounterView mCounter;
     private ImageButton mDirectionUp;
     private ImageButton mDirectionDown;
 
@@ -49,10 +46,7 @@ public class CounterFragment extends Fragment implements View.OnClickListener {
         mRootView = view.findViewById(R.id.root_view);
         mRootView.setOnClickListener(this);
 
-        mCounter = (TextView) view.findViewById(R.id.counter);
-        mCounter.setText(Integer.toString(mCount));
-
-        mCounterTest = (CounterView) view.findViewById(R.id.counter_test);
+        mCounter = (CounterView) view.findViewById(R.id.counter);
 
         mDirectionUp = (ImageButton) view.findViewById(R.id.direction_up);
         mDirectionUp.setOnClickListener(this);
@@ -82,21 +76,14 @@ public class CounterFragment extends Fragment implements View.OnClickListener {
         switch (v.getId()) {
 
             case R.id.root_view:
-                if (mCount + mIncrement >= 0) {
-                    mCount += mIncrement;
-                    mCounter.setText(Integer.toString(mCount));
-                } else {
-                    Toast.makeText(mActivity, R.string.number_bottom_warning, Toast.LENGTH_SHORT).show();
-                }
-
                 if (mPrefs.getBoolean(PreferenceFragment.KEY_VIBRATION, true)) {
                     mVibrator.vibrate(50);
                 }
 
                 if (mIncrement > 0) {
-                    mCounterTest.increment();
+                    mCounter.increment();
                 } else {
-                    mCounterTest.decrement();
+                    mCounter.decrement();
                 }
                 break;
 

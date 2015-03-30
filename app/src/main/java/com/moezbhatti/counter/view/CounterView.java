@@ -80,7 +80,7 @@ public class CounterView extends LinearLayout {
         for (int i = 0; i < digits.length; i++) {
             int from = digitsStart[i];
             int to = digits[i];
-    
+
             ((TimelyView) getChildAt(i)).animate(from, to).start();
         }
     }

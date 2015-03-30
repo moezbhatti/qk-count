@@ -22,19 +22,8 @@
         android:rotation="180"
         android:src="@drawable/ic_arrow_circle" />
 
-    <TextView
-        android:id="@+id/counter"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:fontFamily="sans-serif-thin"
-        android:singleLine="true"
-        android:textColor="@android:color/white"
-        android:textSize="192sp"
-        android:visibility="gone" />
-
     <com.moezbhatti.counter.view.CounterView
-        android:id="@+id/counter_test"
+        android:id="@+id/counter"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:animateLayoutChanges="true" />

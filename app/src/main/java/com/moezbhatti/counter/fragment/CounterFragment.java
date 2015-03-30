@@ -21,9 +21,6 @@ public class CounterFragment extends Fragment implements View.OnClickListener {
     private Vibrator mVibrator;
     private SharedPreferences mPrefs;
 
-    private int mCount = 0;
-    private int mIncrement = 1;
-
     private View mRootView;
     private CounterView mCounter;
     private ImageButton mDirectionUp;
@@ -60,7 +57,7 @@ public class CounterFragment extends Fragment implements View.OnClickListener {
         } else {
             mDirectionUp.setVisibility(View.GONE);
             mDirectionDown.setVisibility(View.GONE);
-            mIncrement = 1;
+            mCounter.setDirection(CounterView.Direction.UP);
         }
 
         return view;
@@ -76,25 +73,20 @@ public class CounterFragment extends Fragment implements View.OnClickListener {
         switch (v.getId()) {
 
             case R.id.root_view:
+                mCounter.handleTouch();
                 if (mPrefs.getBoolean(PreferenceFragment.KEY_VIBRATION, true)) {
                     mVibrator.vibrate(50);
-                }
-
-                if (mIncrement > 0) {
-                    mCounter.increment();
-                } else {
-                    mCounter.decrement();
                 }
                 break;
 
             case R.id.direction_up:
-                mIncrement = 1;
+                mCounter.setDirection(CounterView.Direction.UP);
                 mDirectionUp.setImageResource(R.drawable.ic_arrow_circle);
                 mDirectionDown.setImageResource(R.drawable.ic_arrow);
                 break;
 
             case R.id.direction_down:
-                mIncrement = -1;
+                mCounter.setDirection(CounterView.Direction.DOWN);
                 mDirectionUp.setImageResource(R.drawable.ic_arrow);
                 mDirectionDown.setImageResource(R.drawable.ic_arrow_circle);
                 break;

@@ -14,7 +14,13 @@ import com.moezbhatti.counter.R;
 public class CounterView extends LinearLayout {
     private final String TAG = "CounterView";
 
+    public enum Direction {
+        UP,
+        DOWN;
+    }
+
     private int mCount = 0;
+    private Direction mDirection = Direction.UP;
 
     public CounterView(Context context) {
         super(context);
@@ -36,6 +42,18 @@ public class CounterView extends LinearLayout {
         setOrientation(HORIZONTAL);
         setGravity(Gravity.CENTER);
         addDigit();
+    }
+
+    public void setDirection(Direction direction) {
+        mDirection = direction;
+    }
+
+    public void handleTouch() {
+        if (mDirection == Direction.UP) {
+            increment();
+        } else {
+            decrement();
+        }
     }
 
     public void increment() {

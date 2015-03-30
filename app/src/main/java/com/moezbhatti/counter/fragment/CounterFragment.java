@@ -9,13 +9,14 @@ import android.os.Vibrator;
 import android.preference.PreferenceManager;
 import android.view.*;
 import android.widget.ImageButton;
+import android.widget.Toast;
 import com.moezbhatti.counter.R;
 import com.moezbhatti.counter.view.CounterView;
 
 /**
  * @author Moez Bhatti
  */
-public class CounterFragment extends Fragment implements View.OnClickListener {
+public class CounterFragment extends Fragment implements View.OnClickListener, View.OnLongClickListener {
     private final String TAG = "CounterFragment";
 
     private Activity mActivity;
@@ -49,12 +50,15 @@ public class CounterFragment extends Fragment implements View.OnClickListener {
 
         mDirectionUp = (ImageButton) view.findViewById(R.id.direction_up);
         mDirectionUp.setOnClickListener(this);
+        mDirectionUp.setOnLongClickListener(this);
 
         mDirectionDown = (ImageButton) view.findViewById(R.id.direction_down);
         mDirectionDown.setOnClickListener(this);
+        mDirectionDown.setOnLongClickListener(this);
 
         mReset = (ImageButton) view.findViewById(R.id.reset);
         mReset.setOnClickListener(this);
+        mReset.setOnLongClickListener(this);
 
         if (mPrefs.getBoolean(PreferenceFragment.KEY_DIRECTIONS, false)) {
             mDirectionUp.setVisibility(View.VISIBLE);
@@ -109,5 +113,21 @@ public class CounterFragment extends Fragment implements View.OnClickListener {
                 }
                 break;
         }
+    }
+
+    @Override
+    public boolean onLongClick(View v) {
+
+        switch (v.getId()) {
+
+            case R.id.direction_up:
+            case R.id.direction_down:
+            case R.id.reset:
+                mVibrator.vibrate(50); // This isn't necessarily haptic feedback, so we should ignore the setting
+                Toast.makeText(mActivity, v.getContentDescription(), Toast.LENGTH_SHORT).show();
+                return true;
+        }
+
+        return false;
     }
 }

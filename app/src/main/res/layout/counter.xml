@@ -36,7 +36,8 @@
     <com.moezbhatti.counter.view.CounterView
         android:id="@+id/counter_test"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:animateLayoutChanges="true" />
 
     <ImageButton
         android:id="@+id/direction_down"

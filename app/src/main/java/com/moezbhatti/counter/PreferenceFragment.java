@@ -6,6 +6,9 @@ import android.view.MenuInflater;
 
 public class PreferenceFragment extends android.preference.PreferenceFragment {
 
+    public static final String KEY_DIRECTIONS = "directions";
+    public static final String KEY_VIBRATION = "vibration";
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

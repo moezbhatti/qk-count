@@ -3,8 +3,10 @@ package com.moezbhatti.counter;
 import android.app.Activity;
 import android.app.Fragment;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Vibrator;
+import android.preference.PreferenceManager;
 import android.view.*;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -13,9 +15,11 @@ import android.widget.Toast;
 public class CounterFragment extends Fragment implements View.OnClickListener {
 
     private Activity mActivity;
+    private Vibrator mVibrator;
+    private SharedPreferences mPrefs;
+
     private int mCount = 0;
     private int mIncrement = 1;
-    private Vibrator mVibrator;
 
     private View mRootView;
     private TextView mCounter;
@@ -28,6 +32,8 @@ public class CounterFragment extends Fragment implements View.OnClickListener {
 
         setHasOptionsMenu(true);
         mActivity = getActivity();
+        mVibrator = (Vibrator) mActivity.getSystemService(Context.VIBRATOR_SERVICE);
+        mPrefs = PreferenceManager.getDefaultSharedPreferences(mActivity);
     }
 
     @Override
@@ -45,8 +51,6 @@ public class CounterFragment extends Fragment implements View.OnClickListener {
 
         mDirectionDown = (ImageButton) view.findViewById(R.id.direction_down);
         mDirectionDown.setOnClickListener(this);
-
-        mVibrator = (Vibrator) mActivity.getSystemService(Context.VIBRATOR_SERVICE);
 
         return view;
     }
@@ -67,7 +71,10 @@ public class CounterFragment extends Fragment implements View.OnClickListener {
                 } else {
                     Toast.makeText(mActivity, R.string.number_bottom_warning, Toast.LENGTH_SHORT).show();
                 }
-                mVibrator.vibrate(50);
+
+                if (mPrefs.getBoolean(PreferenceFragment.KEY_VIBRATION, true)) {
+                    mVibrator.vibrate(50);
+                }
                 break;
 
             case R.id.direction_up:

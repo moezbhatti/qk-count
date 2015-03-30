@@ -6,6 +6,7 @@ import android.view.Gravity;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import com.github.adnansm.timelytextview.TimelyView;
+import com.moezbhatti.counter.Utils;
 
 /**
  * @author Moez Bhatti
@@ -38,9 +39,12 @@ public class CounterView extends LinearLayout {
         setGravity(Gravity.CENTER);
 
         LinearLayout.LayoutParams digitLayoutParams = new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, 500, 1f);
+        int padding = Utils.dpToPx(context, 8);
 
         mTimelyView = new TimelyView(context);
         mTimelyView.setLayoutParams(digitLayoutParams);
+        mTimelyView.setPadding(padding, padding, padding, padding);
+        mTimelyView.animate(0).start();
 
         addView(mTimelyView);
     }

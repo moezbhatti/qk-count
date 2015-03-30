@@ -3,8 +3,12 @@
 
     <string name="action_settings">Settings</string>
 
+    <string name="pref_category_general">General</string>
     <string name="pref_category_vibration">Haptic feedback</string>
+    <string name="pref_title_directions">Direction control</string>
+    <string name="pref_summary_directions">Display buttons allowing you to toggle increasing or decreasing the count</string>
     <string name="pref_title_vibration">Haptic feedback</string>
     <string name="pref_summary_vibration">Vibrate the screen when you touch it</string>
+
     <string name="number_bottom_warning">Can\'t go below 0!</string>
 </resources>

@@ -4,7 +4,7 @@ import android.app.Application;
 import android.preference.PreferenceManager;
 
 /**
- * Created by moez.bhatti on 15-03-30.
+ * @author Moez Bhatti
  */
 public class CounterApp extends Application {
 

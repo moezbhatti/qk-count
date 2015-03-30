@@ -13,6 +13,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 import com.moezbhatti.counter.R;
 
+/**
+ * @author Moez Bhatti
+ */
 public class CounterFragment extends Fragment implements View.OnClickListener {
 
     private Activity mActivity;

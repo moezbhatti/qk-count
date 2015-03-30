@@ -9,7 +9,9 @@ import com.moezbhatti.counter.fragment.CounterFragment;
 import com.moezbhatti.counter.fragment.PreferenceFragment;
 import com.moezbhatti.counter.R;
 
-
+/**
+ * @author Moez Bhatti
+ */
 public class MainActivity extends ActionBarActivity {
     private final String TAG = "MainActivity";
 

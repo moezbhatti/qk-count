@@ -6,6 +6,8 @@ import android.util.AttributeSet;
 /**
  * Custom FrameLayout with support for the xFraction property, used when animating a fragment
  * http://stackoverflow.com/a/4936159
+ *
+ * @author Moez Bhatti
  */
 public class FrameLayout extends android.widget.FrameLayout {
 

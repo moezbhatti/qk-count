@@ -5,6 +5,9 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import com.moezbhatti.counter.R;
 
+/**
+ * @author Moez Bhatti
+ */
 public class PreferenceFragment extends android.preference.PreferenceFragment {
 
     public static final String KEY_DIRECTIONS = "directions";

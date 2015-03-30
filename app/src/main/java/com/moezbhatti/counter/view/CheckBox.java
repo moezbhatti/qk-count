@@ -15,7 +15,7 @@ import com.moezbhatti.counter.R;
  *
  * Copied from QKSMS
  *
- * @author moez
+ * @author Moez Bhatti
  */
 public class CheckBox extends android.widget.CheckBox {
     public static final String TAG = "CheckBox";

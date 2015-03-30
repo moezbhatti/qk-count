@@ -16,6 +16,7 @@ import com.moezbhatti.counter.view.CounterView;
  * @author Moez Bhatti
  */
 public class CounterFragment extends Fragment implements View.OnClickListener {
+    private final String TAG = "CounterFragment";
 
     private Activity mActivity;
     private Vibrator mVibrator;

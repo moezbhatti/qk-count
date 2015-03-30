@@ -28,11 +28,10 @@ public class MainActivity extends ActionBarActivity {
         mCounterFragment = new CounterFragment();
 
         getFragmentManager().beginTransaction()
-                .replace(R.id.fragment_frame, mCounterFragment)
+                .add(R.id.fragment_frame, mCounterFragment)
                 /*.setCustomAnimations(R.animator.slide_in_left, R.animator.slide_out_left,
                         R.animator.slide_in_right, R.animator.slide_out_left)
                 .show(mCounterFragment)*/
-                .addToBackStack("counter")
                 .commit();
     }
 
@@ -50,11 +49,11 @@ public class MainActivity extends ActionBarActivity {
         if (id == R.id.action_settings) {
             PreferenceFragment preferenceFragment = new PreferenceFragment();
             getFragmentManager().beginTransaction()
+                    .addToBackStack(null)
                     .replace(R.id.fragment_frame, preferenceFragment)
                     /*.setCustomAnimations(R.animator.slide_in_left, R.animator.slide_out_left,
                             R.animator.slide_in_left, R.animator.slide_out_left)
                     .show(preferenceFragment)*/
-                    .addToBackStack("settings")
                     .commit();
             return true;
         }
@@ -64,10 +63,10 @@ public class MainActivity extends ActionBarActivity {
 
     @Override
     public void onBackPressed() {
-        if (getFragmentManager().getBackStackEntryCount() == 1) {
-            finish();
-        } else {
+        if (getFragmentManager().getBackStackEntryCount() != 0) {
             getFragmentManager().popBackStack();
+        } else {
+            super.onBackPressed();
         }
     }
 }

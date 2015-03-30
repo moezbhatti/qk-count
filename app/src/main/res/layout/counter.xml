@@ -29,7 +29,8 @@
         android:layout_gravity="center"
         android:fontFamily="sans-serif-thin"
         android:textColor="@android:color/white"
-        android:textSize="192sp" />
+        android:textSize="192sp"
+        android:singleLine="true" />
 
     <ImageButton
         android:id="@+id/direction_down"

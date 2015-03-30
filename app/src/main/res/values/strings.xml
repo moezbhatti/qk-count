@@ -6,4 +6,5 @@
     <string name="pref_category_vibration">Haptic feedback</string>
     <string name="pref_title_vibration">Haptic feedback</string>
     <string name="pref_summary_vibration">Vibrate the screen when you touch it</string>
+    <string name="number_bottom_warning">Can\'t go below 0!</string>
 </resources>

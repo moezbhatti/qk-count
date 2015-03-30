@@ -68,6 +68,23 @@ public class CounterView extends LinearLayout {
         }
     }
 
+    public void decrement() {
+        int[] digitsStart = getDigitsFromNumber(mCount);
+        mCount--;
+        int[] digits = getDigitsFromNumber(mCount);
+
+        if (digits.length < digitsStart.length) {
+            removeViewAt(digits.length);
+        }
+
+        for (int i = 0; i < digits.length; i++) {
+            int from = digitsStart[i];
+            int to = digits[i];
+    
+            ((TimelyView) getChildAt(i)).animate(from, to).start();
+        }
+    }
+
     private int[] getDigitsFromNumber(int count) {
         String s = Integer.toString(count);
 

@@ -93,7 +93,11 @@ public class CounterFragment extends Fragment implements View.OnClickListener {
                     mVibrator.vibrate(50);
                 }
 
-                mCounterTest.increment();
+                if (mIncrement > 0) {
+                    mCounterTest.increment();
+                } else {
+                    mCounterTest.decrement();
+                }
                 break;
 
             case R.id.direction_up:

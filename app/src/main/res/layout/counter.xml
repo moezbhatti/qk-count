@@ -13,14 +13,10 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin">
 
-    <ImageButton
-        android:id="@+id/direction_up"
-        android:layout_width="56dp"
-        android:layout_height="56dp"
-        android:background="@drawable/ripple"
-        android:padding="8dp"
-        android:rotation="180"
-        android:src="@drawable/ic_arrow_circle" />
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
 
     <com.moezbhatti.counter.view.CounterView
         android:id="@+id/counter"
@@ -28,12 +24,33 @@
         android:layout_height="wrap_content"
         android:animateLayoutChanges="true" />
 
-    <ImageButton
-        android:id="@+id/direction_down"
-        android:layout_width="56dp"
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="56dp"
-        android:background="@drawable/ripple"
-        android:padding="8dp"
-        android:src="@drawable/ic_arrow" />
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/direction_up"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:background="@drawable/ripple"
+            android:padding="8dp"
+            android:rotation="180"
+            android:src="@drawable/ic_arrow_circle" />
+
+        <ImageButton
+            android:id="@+id/direction_down"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:background="@drawable/ripple"
+            android:padding="8dp"
+            android:src="@drawable/ic_arrow" />
+    </LinearLayout>
 
 </LinearLayout>

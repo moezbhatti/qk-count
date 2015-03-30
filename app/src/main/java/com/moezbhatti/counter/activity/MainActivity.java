@@ -1,10 +1,13 @@
-package com.moezbhatti.counter;
+package com.moezbhatti.counter.activity;
 
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import com.moezbhatti.counter.fragment.CounterFragment;
+import com.moezbhatti.counter.fragment.PreferenceFragment;
+import com.moezbhatti.counter.R;
 
 
 public class MainActivity extends ActionBarActivity {

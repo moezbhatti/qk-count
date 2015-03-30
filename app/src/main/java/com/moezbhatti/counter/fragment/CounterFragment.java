@@ -1,4 +1,4 @@
-package com.moezbhatti.counter;
+package com.moezbhatti.counter.fragment;
 
 import android.app.Activity;
 import android.app.Fragment;
@@ -11,6 +11,7 @@ import android.view.*;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
+import com.moezbhatti.counter.R;
 
 public class CounterFragment extends Fragment implements View.OnClickListener {
 

@@ -1,4 +1,4 @@
-package com.moezbhatti.counter;
+package com.moezbhatti.counter.view;
 
 import android.animation.ObjectAnimator;
 import android.content.Context;
@@ -8,6 +8,7 @@ import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.util.AttributeSet;
+import com.moezbhatti.counter.R;
 
 /**
  * Custom CheckBox, made to support animated boxes on versions prior to lollipop

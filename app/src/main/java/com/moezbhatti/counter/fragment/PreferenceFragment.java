@@ -1,8 +1,9 @@
-package com.moezbhatti.counter;
+package com.moezbhatti.counter.fragment;
 
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
+import com.moezbhatti.counter.R;
 
 public class PreferenceFragment extends android.preference.PreferenceFragment {
 

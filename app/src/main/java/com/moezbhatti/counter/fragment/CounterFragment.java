@@ -12,6 +12,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.moezbhatti.counter.R;
+import com.moezbhatti.counter.view.CounterView;
 
 /**
  * @author Moez Bhatti
@@ -27,6 +28,7 @@ public class CounterFragment extends Fragment implements View.OnClickListener {
 
     private View mRootView;
     private TextView mCounter;
+    private CounterView mCounterTest;
     private ImageButton mDirectionUp;
     private ImageButton mDirectionDown;
 
@@ -49,6 +51,8 @@ public class CounterFragment extends Fragment implements View.OnClickListener {
 
         mCounter = (TextView) view.findViewById(R.id.counter);
         mCounter.setText(Integer.toString(mCount));
+
+        mCounterTest = (CounterView) view.findViewById(R.id.counter_test);
 
         mDirectionUp = (ImageButton) view.findViewById(R.id.direction_up);
         mDirectionUp.setOnClickListener(this);
@@ -88,6 +92,8 @@ public class CounterFragment extends Fragment implements View.OnClickListener {
                 if (mPrefs.getBoolean(PreferenceFragment.KEY_VIBRATION, true)) {
                     mVibrator.vibrate(50);
                 }
+
+                mCounterTest.increment();
                 break;
 
             case R.id.direction_up:

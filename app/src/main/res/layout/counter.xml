@@ -28,9 +28,15 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:fontFamily="sans-serif-thin"
+        android:singleLine="true"
         android:textColor="@android:color/white"
         android:textSize="192sp"
-        android:singleLine="true" />
+        android:visibility="gone" />
+
+    <com.moezbhatti.counter.view.CounterView
+        android:id="@+id/counter_test"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
     <ImageButton
         android:id="@+id/direction_down"

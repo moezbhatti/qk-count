@@ -5,6 +5,7 @@ import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 import com.github.adnansm.timelytextview.TimelyView;
 import com.moezbhatti.counter.R;
 
@@ -87,6 +88,11 @@ public class CounterView extends LinearLayout {
     }
 
     public void decrement() {
+        if (mCount == 0) {
+            Toast.makeText(getContext(), R.string.number_bottom_warning, Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         int[] digitsStart = getDigitsFromNumber(mCount);
         mCount--;
         int[] digits = getDigitsFromNumber(mCount);

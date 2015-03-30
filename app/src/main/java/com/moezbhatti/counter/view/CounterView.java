@@ -60,12 +60,18 @@ public class CounterView extends LinearLayout {
     }
 
     public void setCount(int count, boolean animate) {
+        if (count < 0) {
+            Toast.makeText(getContext(), R.string.number_bottom_warning, Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         int[] digitsStart = getDigitsFromNumber(mCount);
         mCount = count;
         int[] digits = getDigitsFromNumber(mCount);
 
         if (digits.length > digitsStart.length) {
-            for (int i = digits.length; i < digitsStart.length; i++) {
+            int digitDiff = digits.length - digitsStart.length;
+            for (int i = 0; i < digitDiff; i++) {
                 addDigit();
             }
         } else if (digits.length < digitsStart.length) {

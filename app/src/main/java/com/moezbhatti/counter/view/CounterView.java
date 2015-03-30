@@ -1,5 +1,6 @@
 package com.moezbhatti.counter.view;
 
+import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.Gravity;
@@ -18,7 +19,7 @@ public class CounterView extends LinearLayout {
 
     public enum Direction {
         UP,
-        DOWN;
+        DOWN
     }
 
     private int mCount = 0;
@@ -56,6 +57,51 @@ public class CounterView extends LinearLayout {
         } else {
             decrement();
         }
+    }
+
+    public void setCount(int count, boolean animate) {
+        int[] digitsStart = getDigitsFromNumber(mCount);
+        mCount = count;
+        int[] digits = getDigitsFromNumber(mCount);
+
+        if (digits.length > digitsStart.length) {
+            for (int i = digits.length; i < digitsStart.length; i++) {
+                addDigit();
+            }
+        } else if (digits.length < digitsStart.length) {
+            for (int i = digits.length; i < digitsStart.length; i++) {
+                removeViewAt(i);
+            }
+        }
+
+        for (int i = 0; i < digits.length; i++) {
+            int from;
+            int to;
+
+            if (digits.length > digitsStart.length) {
+                int digitDiff = digits.length - digitsStart.length;
+                if (i < digitDiff) {
+                    from = 0;
+                    to = digits[i];
+                } else {
+                    from = digitsStart[i - 1];
+                    to = digits[i];
+                }
+            } else {
+                from = digitsStart[i];
+                to = digits[i];
+            }
+
+            ObjectAnimator animator = ((TimelyView) getChildAt(i).findViewById(R.id.digit)).animate(from, to);
+            if (!animate) {
+                animator.setDuration(0);
+            }
+            animator.start();
+        }
+    }
+
+    public int getCount() {
+        return mCount;
     }
 
     public void increment() {
@@ -130,9 +176,5 @@ public class CounterView extends LinearLayout {
         timelyView.animate(0).setDuration(0).start();
 
         addView(view);
-    }
-
-    public int getCount() {
-        return mCount;
     }
 }

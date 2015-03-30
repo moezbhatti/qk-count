@@ -52,6 +52,15 @@ public class CounterFragment extends Fragment implements View.OnClickListener {
         mDirectionDown = (ImageButton) view.findViewById(R.id.direction_down);
         mDirectionDown.setOnClickListener(this);
 
+        if (mPrefs.getBoolean(PreferenceFragment.KEY_DIRECTIONS, false)) {
+            mDirectionUp.setVisibility(View.VISIBLE);
+            mDirectionDown.setVisibility(View.VISIBLE);
+        } else {
+            mDirectionUp.setVisibility(View.GONE);
+            mDirectionDown.setVisibility(View.GONE);
+            mIncrement = 1;
+        }
+
         return view;
     }
 

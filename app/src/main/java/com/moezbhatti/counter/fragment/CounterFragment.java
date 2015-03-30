@@ -26,6 +26,7 @@ public class CounterFragment extends Fragment implements View.OnClickListener {
     private CounterView mCounter;
     private ImageButton mDirectionUp;
     private ImageButton mDirectionDown;
+    private ImageButton mReset;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -51,6 +52,9 @@ public class CounterFragment extends Fragment implements View.OnClickListener {
 
         mDirectionDown = (ImageButton) view.findViewById(R.id.direction_down);
         mDirectionDown.setOnClickListener(this);
+
+        mReset = (ImageButton) view.findViewById(R.id.reset);
+        mReset.setOnClickListener(this);
 
         if (mPrefs.getBoolean(PreferenceFragment.KEY_DIRECTIONS, false)) {
             mDirectionUp.setVisibility(View.VISIBLE);
@@ -84,12 +88,25 @@ public class CounterFragment extends Fragment implements View.OnClickListener {
                 mCounter.setDirection(CounterView.Direction.UP);
                 mDirectionUp.setImageResource(R.drawable.ic_arrow_circle);
                 mDirectionDown.setImageResource(R.drawable.ic_arrow);
+                if (mPrefs.getBoolean(PreferenceFragment.KEY_VIBRATION, true)) {
+                    mVibrator.vibrate(50);
+                }
                 break;
 
             case R.id.direction_down:
                 mCounter.setDirection(CounterView.Direction.DOWN);
                 mDirectionUp.setImageResource(R.drawable.ic_arrow);
                 mDirectionDown.setImageResource(R.drawable.ic_arrow_circle);
+                if (mPrefs.getBoolean(PreferenceFragment.KEY_VIBRATION, true)) {
+                    mVibrator.vibrate(50);
+                }
+                break;
+
+            case R.id.reset:
+                mCounter.setCount(0, true);
+                if (mPrefs.getBoolean(PreferenceFragment.KEY_VIBRATION, true)) {
+                    mVibrator.vibrate(50);
+                }
                 break;
         }
     }

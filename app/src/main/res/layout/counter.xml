@@ -51,6 +51,14 @@
             android:background="@drawable/ripple"
             android:padding="8dp"
             android:src="@drawable/ic_arrow" />
+
+        <ImageButton
+            android:id="@+id/reset"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:background="@drawable/ripple"
+            android:padding="8dp"
+            android:src="@drawable/ic_reset" />
     </LinearLayout>
 
 </LinearLayout>

@@ -3,6 +3,7 @@ package com.moezbhatti.counter.view;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.Gravity;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.Toast;
@@ -83,7 +84,7 @@ public class CounterView extends LinearLayout {
                 to = digits[i];
             }
 
-            ((TimelyView) getChildAt(i)).animate(from, to).start();
+            ((TimelyView) getChildAt(i).findViewById(R.id.digit)).animate(from, to).start();
         }
     }
 
@@ -105,7 +106,7 @@ public class CounterView extends LinearLayout {
             int from = digitsStart[i];
             int to = digits[i];
 
-            ((TimelyView) getChildAt(i)).animate(from, to).start();
+            ((TimelyView) getChildAt(i).findViewById(R.id.digit)).animate(from, to).start();
         }
     }
 
@@ -121,13 +122,14 @@ public class CounterView extends LinearLayout {
     }
 
     private void addDigit() {
-        LayoutParams lp = new LayoutParams(192, ViewGroup.LayoutParams.WRAP_CONTENT, 1f);
+        LayoutParams lp = new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT, 1f);
 
-        TimelyView timelyView = (TimelyView) inflate(getContext(), R.layout.digit, null);
+        View view = inflate(getContext(), R.layout.digit, null);
+        view.setLayoutParams(lp);
+        TimelyView timelyView = (TimelyView) view.findViewById(R.id.digit);
         timelyView.animate(0).setDuration(0).start();
-        timelyView.setLayoutParams(lp);
 
-        addView(timelyView);
+        addView(view);
     }
 
     public int getCount() {

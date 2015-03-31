@@ -47,6 +47,12 @@ public class CounterView extends LinearLayout {
         addDigit();
     }
 
+    @Override
+    public void onWindowFocusChanged(boolean hasWindowFocus) {
+        super.onWindowFocusChanged(hasWindowFocus);
+        fixDigitSizes();
+    }
+
     public void setDirection(Direction direction) {
         mDirection = direction;
     }
@@ -76,7 +82,7 @@ public class CounterView extends LinearLayout {
             }
         } else if (digits.length < digitsStart.length) {
             for (int i = digits.length; i < digitsStart.length; i++) {
-                removeViewAt(i);
+                removeLastDigit();
             }
         }
 
@@ -151,7 +157,7 @@ public class CounterView extends LinearLayout {
         int[] digits = getDigitsFromNumber(mCount);
 
         if (digits.length < digitsStart.length) {
-            removeViewAt(digits.length);
+            removeLastDigit();
         }
 
         for (int i = 0; i < digits.length; i++) {
@@ -173,6 +179,11 @@ public class CounterView extends LinearLayout {
         return digits;
     }
 
+    private void removeLastDigit() {
+        removeViewAt(getChildCount() - 1);
+        fixDigitSizes();
+    }
+
     private void addDigit() {
         LayoutParams lp = new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT, 1f);
 
@@ -182,5 +193,20 @@ public class CounterView extends LinearLayout {
         timelyView.animate(0).setDuration(0).start();
 
         addView(view);
+        fixDigitSizes();
+    }
+
+    private void fixDigitSizes() {
+
+        if (getChildCount() == 1) {
+            getChildAt(0).setLayoutParams(new LayoutParams(getWidth() / 2, ViewGroup.LayoutParams.WRAP_CONTENT));
+            return;
+        }
+
+        LayoutParams lp = new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT, 1f);
+        for (int i = 0; i < getChildCount(); i++) {
+            getChildAt(i).setLayoutParams(lp);
+        }
+
     }
 }

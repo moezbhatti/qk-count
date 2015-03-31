@@ -3,9 +3,7 @@ package com.moezbhatti.counter.view;
 import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.util.AttributeSet;
-import android.view.Gravity;
-import android.view.View;
-import android.view.ViewGroup;
+import android.view.*;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 import com.github.adnansm.timelytextview.TimelyView;
@@ -199,7 +197,13 @@ public class CounterView extends LinearLayout {
     private void fixDigitSizes() {
 
         if (getChildCount() == 1) {
-            getChildAt(0).setLayoutParams(new LayoutParams(getWidth() / 2, ViewGroup.LayoutParams.WRAP_CONTENT));
+            int width = getWidth() / 2;
+            if (width == 0) { // if we don't have a width, then calculate one based on the screen size
+                WindowManager wm = (WindowManager) getContext().getSystemService(Context.WINDOW_SERVICE);
+                Display display = wm.getDefaultDisplay();
+                width = display.getWidth() / 2;
+            }
+            getChildAt(0).setLayoutParams(new LayoutParams(width, ViewGroup.LayoutParams.WRAP_CONTENT));
             return;
         }
 

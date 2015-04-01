@@ -13,6 +13,14 @@
             android:title="@string/pref_title_directions"
             android:widgetLayout="@layout/preference_widget_checkbox" />
 
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="volume_controls"
+            android:layout="@layout/preference"
+            android:summary="@string/pref_summary_volume"
+            android:title="@string/pref_title_volume"
+            android:widgetLayout="@layout/preference_widget_checkbox" />
+
     </PreferenceCategory>
 
     <PreferenceCategory

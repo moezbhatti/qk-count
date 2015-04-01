@@ -136,11 +136,15 @@ public class CounterFragment extends Fragment implements View.OnClickListener, V
 
         switch (keyCode) {
             case KeyEvent.KEYCODE_VOLUME_UP:
-                mCounter.increment();
+                if (mPrefs.getBoolean(PreferenceFragment.KEY_VOLUME_CONTROLS, true)) {
+                    mCounter.increment();
+                }
                 return true;
 
             case KeyEvent.KEYCODE_VOLUME_DOWN:
-                mCounter.decrement();
+                if (mPrefs.getBoolean(PreferenceFragment.KEY_VOLUME_CONTROLS, true)) {
+                    mCounter.decrement();
+                }
                 return true;
         }
 

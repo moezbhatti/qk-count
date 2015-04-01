@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.*;
 import android.widget.ImageButton;
 import android.widget.Toast;
@@ -125,6 +126,21 @@ public class CounterFragment extends Fragment implements View.OnClickListener, V
             case R.id.reset:
                 mVibrator.vibrate(50); // This isn't necessarily haptic feedback, so we should ignore the setting
                 Toast.makeText(mActivity, v.getContentDescription(), Toast.LENGTH_SHORT).show();
+                return true;
+        }
+
+        return false;
+    }
+
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+
+        switch (keyCode) {
+            case KeyEvent.KEYCODE_VOLUME_UP:
+                mCounter.increment();
+                return true;
+
+            case KeyEvent.KEYCODE_VOLUME_DOWN:
+                mCounter.decrement();
                 return true;
         }
 

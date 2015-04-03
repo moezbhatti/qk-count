@@ -1,4 +1,4 @@
-package com.moezbhatti.counter;
+package com.qklabs.counter;
 
 import android.content.Context;
 import android.util.DisplayMetrics;

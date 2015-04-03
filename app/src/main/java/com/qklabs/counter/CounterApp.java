@@ -1,4 +1,4 @@
-package com.moezbhatti.counter;
+package com.qklabs.counter;
 
 import android.app.Application;
 import android.preference.PreferenceManager;

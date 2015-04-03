@@ -18,7 +18,7 @@
         android:layout_height="0dp"
         android:layout_weight="1" />
 
-    <com.moezbhatti.counter.view.CounterView
+    <com.qklabs.counter.view.CounterView
         android:id="@+id/counter"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

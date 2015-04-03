@@ -1,9 +1,9 @@
-package com.moezbhatti.counter.fragment;
+package com.qklabs.counter.fragment;
 
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
-import com.moezbhatti.counter.R;
+import com.qklabs.counter.R;
 
 /**
  * @author Moez Bhatti

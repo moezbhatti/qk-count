@@ -1,4 +1,4 @@
-package com.moezbhatti.counter.view;
+package com.qklabs.counter.view;
 
 import android.content.Context;
 import android.util.AttributeSet;

@@ -1,4 +1,4 @@
-package com.moezbhatti.counter.fragment;
+package com.qklabs.counter.fragment;
 
 import android.app.Activity;
 import android.app.Fragment;
@@ -10,8 +10,8 @@ import android.preference.PreferenceManager;
 import android.view.*;
 import android.widget.ImageButton;
 import android.widget.Toast;
-import com.moezbhatti.counter.R;
-import com.moezbhatti.counter.view.CounterView;
+import com.qklabs.counter.R;
+import com.qklabs.counter.view.CounterView;
 
 /**
  * @author Moez Bhatti

@@ -1,4 +1,4 @@
-package com.moezbhatti.counter.view;
+package com.qklabs.counter.view;
 
 import android.animation.ObjectAnimator;
 import android.content.Context;
@@ -7,7 +7,7 @@ import android.view.*;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 import com.github.adnansm.timelytextview.TimelyView;
-import com.moezbhatti.counter.R;
+import com.qklabs.counter.R;
 
 /**
  * @author Moez Bhatti

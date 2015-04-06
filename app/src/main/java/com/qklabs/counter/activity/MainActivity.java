@@ -30,9 +30,7 @@ public class MainActivity extends ActionBarActivity {
 
         getFragmentManager().beginTransaction()
                 .add(R.id.fragment_frame, mCounterFragment)
-                /*.setCustomAnimations(R.animator.slide_in_left, R.animator.slide_out_left,
-                        R.animator.slide_in_right, R.animator.slide_out_left)
-                .show(mCounterFragment)*/
+                .show(mCounterFragment)
                 .commit();
     }
 
@@ -52,9 +50,7 @@ public class MainActivity extends ActionBarActivity {
             getFragmentManager().beginTransaction()
                     .addToBackStack(null)
                     .replace(R.id.fragment_frame, preferenceFragment)
-                    /*.setCustomAnimations(R.animator.slide_in_left, R.animator.slide_out_left,
-                            R.animator.slide_in_left, R.animator.slide_out_left)
-                    .show(preferenceFragment)*/
+                    .show(preferenceFragment)
                     .commit();
             return true;
         }

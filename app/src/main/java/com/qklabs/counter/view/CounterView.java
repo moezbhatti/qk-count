@@ -72,9 +72,9 @@ public class CounterView extends LinearLayout {
         int[] digitsStart = getDigitsFromNumber(mCount);
         mCount = count;
         int[] digits = getDigitsFromNumber(mCount);
+        int digitDiff = digits.length - digitsStart.length;
 
         if (digits.length > digitsStart.length) {
-            int digitDiff = digits.length - digitsStart.length;
             for (int i = 0; i < digitDiff; i++) {
                 addDigit();
             }
@@ -89,12 +89,11 @@ public class CounterView extends LinearLayout {
             int to;
 
             if (digits.length > digitsStart.length) {
-                int digitDiff = digits.length - digitsStart.length;
                 if (i < digitDiff) {
                     from = 0;
                     to = digits[i];
                 } else {
-                    from = digitsStart[i - 1];
+                    from = digitsStart[i - digitDiff];
                     to = digits[i];
                 }
             } else {

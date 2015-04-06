@@ -17,5 +17,6 @@
         android:padding="8dp"
         android:singleLine="true"
         android:textColor="@android:color/white"
+        android:fontFamily="sans-serif-light"
         android:textSize="22sp" />
 </android.support.v7.widget.Toolbar>

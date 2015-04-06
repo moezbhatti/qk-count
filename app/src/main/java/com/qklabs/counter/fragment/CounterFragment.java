@@ -155,11 +155,17 @@ public class CounterFragment extends Fragment implements View.OnClickListener, V
         editDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
             @Override
             public void onDismiss(DialogInterface dialog) {
+                int count;
                 try {
-                    mCounter.setCount(Integer.parseInt(edit.getText().toString()), true);
+                    count = Integer.parseInt(edit.getText().toString());
                 } catch (NumberFormatException ignored) {
-                    mCounter.setCount(0, true);
+                    Log.w(TAG, "Invalid number >" + edit.getText() + "<");
+                    count = mCounter.getCount();
                 }
+
+                Log.i(TAG, "Setting number to " + count);
+
+                mCounter.setCount(count, true);
             }
         });
 

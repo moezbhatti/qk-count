@@ -54,6 +54,13 @@ public class CounterFragment extends Fragment implements View.OnClickListener, V
         super.onResume();
 
         getActivity().setTitle(R.string.app_name);
+        mCounter.setCount(mPrefs.getInt(PreferenceFragment.KEY_COUNT, 0), false);
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        mPrefs.edit().putInt(PreferenceFragment.KEY_COUNT, mCounter.getCount()).apply();
     }
 
     @Override

@@ -11,6 +11,7 @@ import com.qklabs.counter.R;
 public class PreferenceFragment extends android.preference.PreferenceFragment {
 
     public static final String KEY_DIRECTIONS = "directions";
+    public static final String KEY_VOLUME_CONTROLS = "volume_controls";
     public static final String KEY_VIBRATION = "vibration";
 
     @Override

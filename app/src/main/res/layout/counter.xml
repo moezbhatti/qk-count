@@ -36,6 +36,24 @@
         android:orientation="horizontal">
 
         <ImageButton
+            android:id="@+id/edit"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:background="@drawable/ripple"
+            android:contentDescription="@string/cd_reset"
+            android:padding="8dp"
+            android:src="@drawable/ic_edit" />
+
+        <ImageButton
+            android:id="@+id/reset"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:background="@drawable/ripple"
+            android:contentDescription="@string/cd_reset"
+            android:padding="8dp"
+            android:src="@drawable/ic_reset" />
+
+        <ImageButton
             android:id="@+id/direction_up"
             android:layout_width="56dp"
             android:layout_height="56dp"
@@ -53,15 +71,6 @@
             android:contentDescription="@string/cd_decrease"
             android:padding="8dp"
             android:src="@drawable/ic_arrow" />
-
-        <ImageButton
-            android:id="@+id/reset"
-            android:layout_width="56dp"
-            android:layout_height="56dp"
-            android:background="@drawable/ripple"
-            android:contentDescription="@string/cd_reset"
-            android:padding="8dp"
-            android:src="@drawable/ic_reset" />
     </LinearLayout>
 
 </LinearLayout>

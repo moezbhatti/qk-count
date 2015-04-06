@@ -3,6 +3,7 @@ package com.qklabs.counter.activity;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import com.qklabs.counter.fragment.CounterFragment;
@@ -68,5 +69,10 @@ public class MainActivity extends ActionBarActivity {
         } else {
             super.onBackPressed();
         }
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        return mCounterFragment.onKeyDown(keyCode, event) || super.onKeyDown(keyCode, event);
     }
 }

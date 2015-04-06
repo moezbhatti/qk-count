@@ -6,6 +6,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 import com.qklabs.counter.fragment.CounterFragment;
 import com.qklabs.counter.fragment.PreferenceFragment;
 import com.qklabs.counter.R;
@@ -17,6 +18,7 @@ public class MainActivity extends ActionBarActivity {
     private final String TAG = "MainActivity";
 
     private CounterFragment mCounterFragment;
+    private TextView mTitle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +27,8 @@ public class MainActivity extends ActionBarActivity {
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        mTitle = (TextView) toolbar.findViewById(R.id.title);
 
         mCounterFragment = new CounterFragment();
 
@@ -70,5 +74,11 @@ public class MainActivity extends ActionBarActivity {
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         return mCounterFragment.onKeyDown(keyCode, event) || super.onKeyDown(keyCode, event);
+    }
+
+    @Override
+    public void setTitle(CharSequence title) {
+        super.setTitle(title);
+        mTitle.setText(title);
     }
 }

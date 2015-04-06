@@ -23,6 +23,13 @@ public class PreferenceFragment extends android.preference.PreferenceFragment {
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+
+        getActivity().setTitle(R.string.action_settings);
+    }
+
+    @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         menu.findItem(R.id.action_settings).setVisible(false);
     }

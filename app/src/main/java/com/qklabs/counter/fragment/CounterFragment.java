@@ -50,6 +50,13 @@ public class CounterFragment extends Fragment implements View.OnClickListener, V
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+
+        getActivity().setTitle(R.string.app_name);
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.counter, container, false);
 

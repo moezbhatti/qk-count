@@ -40,7 +40,7 @@
             android:layout_width="56dp"
             android:layout_height="56dp"
             android:background="@drawable/ripple"
-            android:contentDescription="@string/cd_reset"
+            android:contentDescription="@string/cd_edit"
             android:padding="8dp"
             android:src="@drawable/ic_edit" />
 

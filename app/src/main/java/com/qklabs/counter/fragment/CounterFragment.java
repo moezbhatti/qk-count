@@ -1,15 +1,23 @@
 package com.qklabs.counter.fragment;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.app.Fragment;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.Vibrator;
 import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.*;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 import com.qklabs.counter.R;
 import com.qklabs.counter.view.CounterView;
@@ -26,9 +34,10 @@ public class CounterFragment extends Fragment implements View.OnClickListener, V
 
     private View mRootView;
     private CounterView mCounter;
+    private ImageButton mEdit;
+    private ImageButton mReset;
     private ImageButton mDirectionUp;
     private ImageButton mDirectionDown;
-    private ImageButton mReset;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -49,6 +58,14 @@ public class CounterFragment extends Fragment implements View.OnClickListener, V
 
         mCounter = (CounterView) view.findViewById(R.id.counter);
 
+        mEdit = (ImageButton) view.findViewById(R.id.edit);
+        mEdit.setOnClickListener(this);
+        mEdit.setOnLongClickListener(this);
+
+        mReset = (ImageButton) view.findViewById(R.id.reset);
+        mReset.setOnClickListener(this);
+        mReset.setOnLongClickListener(this);
+
         mDirectionUp = (ImageButton) view.findViewById(R.id.direction_up);
         mDirectionUp.setOnClickListener(this);
         mDirectionUp.setOnLongClickListener(this);
@@ -56,10 +73,6 @@ public class CounterFragment extends Fragment implements View.OnClickListener, V
         mDirectionDown = (ImageButton) view.findViewById(R.id.direction_down);
         mDirectionDown.setOnClickListener(this);
         mDirectionDown.setOnLongClickListener(this);
-
-        mReset = (ImageButton) view.findViewById(R.id.reset);
-        mReset.setOnClickListener(this);
-        mReset.setOnLongClickListener(this);
 
         if (mPrefs.getBoolean(PreferenceFragment.KEY_DIRECTIONS, false)) {
             mDirectionUp.setVisibility(View.VISIBLE);
@@ -89,6 +102,17 @@ public class CounterFragment extends Fragment implements View.OnClickListener, V
                 }
                 break;
 
+            case R.id.edit:
+                showEditDialog();
+                break;
+
+            case R.id.reset:
+                mCounter.setCount(0, true);
+                if (mPrefs.getBoolean(PreferenceFragment.KEY_VIBRATION, true)) {
+                    mVibrator.vibrate(50);
+                }
+                break;
+
             case R.id.direction_up:
                 mCounter.setDirection(CounterView.Direction.UP);
                 mDirectionUp.setImageResource(R.drawable.ic_arrow_circle);
@@ -106,24 +130,60 @@ public class CounterFragment extends Fragment implements View.OnClickListener, V
                     mVibrator.vibrate(50);
                 }
                 break;
-
-            case R.id.reset:
-                mCounter.setCount(0, true);
-                if (mPrefs.getBoolean(PreferenceFragment.KEY_VIBRATION, true)) {
-                    mVibrator.vibrate(50);
-                }
-                break;
         }
+    }
+
+    private void showEditDialog() {
+        final Dialog editDialog = new Dialog(getActivity());
+        editDialog.setTitle(R.string.edit_dialog_title);
+        editDialog.setContentView(R.layout.dialog_edit);
+
+        final EditText edit = (EditText) editDialog.findViewById(R.id.edit);
+        edit.setHint(Integer.toString(mCounter.getCount()));
+        edit.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_DONE) {
+                    editDialog.dismiss();
+                    return true;
+                }
+
+                return false;
+            }
+        });
+
+        editDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+            @Override
+            public void onDismiss(DialogInterface dialog) {
+                try {
+                    mCounter.setCount(Integer.parseInt(edit.getText().toString()), true);
+                } catch (NumberFormatException ignored) {
+                    mCounter.setCount(0, true);
+                }
+            }
+        });
+
+        editDialog.show();
+
+        // Give focus to the edit field automatically
+        // Need to put this in a handler, because we can't give focus until the view is visible
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.showSoftInput(edit, InputMethodManager.SHOW_IMPLICIT);
+            }
+        }, 50);
     }
 
     @Override
     public boolean onLongClick(View v) {
 
         switch (v.getId()) {
-
+            case R.id.edit:
+            case R.id.reset:
             case R.id.direction_up:
             case R.id.direction_down:
-            case R.id.reset:
                 mVibrator.vibrate(50); // This isn't necessarily haptic feedback, so we should ignore the setting
                 Toast.makeText(mActivity, v.getContentDescription(), Toast.LENGTH_SHORT).show();
                 return true;

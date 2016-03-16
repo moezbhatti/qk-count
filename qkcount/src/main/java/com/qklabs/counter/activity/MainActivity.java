@@ -1,5 +1,6 @@
 package com.qklabs.counter.activity;
 
+import android.app.FragmentManager;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
@@ -7,9 +8,9 @@ import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
+import com.qklabs.counter.R;
 import com.qklabs.counter.fragment.CounterFragment;
 import com.qklabs.counter.fragment.PreferenceFragment;
-import com.qklabs.counter.R;
 
 /**
  * @author Moez Bhatti
@@ -30,10 +31,14 @@ public class MainActivity extends ActionBarActivity {
 
         mTitle = (TextView) toolbar.findViewById(R.id.title);
 
-        mCounterFragment = new CounterFragment();
+        FragmentManager fm = getFragmentManager();
 
-        getFragmentManager().beginTransaction()
-                .add(R.id.fragment_frame, mCounterFragment)
+        mCounterFragment = (CounterFragment) fm.findFragmentById(R.id.fragment_frame);
+        if (mCounterFragment == null) {
+            mCounterFragment = new CounterFragment();
+        }
+        fm.beginTransaction()
+                .replace(R.id.fragment_frame, mCounterFragment)
                 .show(mCounterFragment)
                 .commit();
     }
